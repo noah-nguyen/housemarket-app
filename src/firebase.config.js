@@ -1,7 +1,9 @@
+//eslint-disable-next-line
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
+//eslint-disable-next-line
 const firebaseConfig = {
   apiKey: "AIzaSyD7UsUKAMemf3LpD3sq4iTlAtGbhSaGul8",
   authDomain: "house-marketplace-app-dc0af.firebaseapp.com",
@@ -12,5 +14,4 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 export const db = getFirestore();

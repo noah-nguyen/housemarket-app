@@ -7,13 +7,15 @@ import {toast} from 'react-toastify'
 function Contact() {
   const [message, setMessage] = useState('')
   const [landlord, setLandlord] = useState(null)
+  //eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
   const params = useParams()
+  console.log(params.landlordId)
 
   useEffect(() => {
     const getLandlord = async () => {
-      const docRef = doc(db, 'users', params.lanlordId)
+      const docRef = doc(db, 'users', params.landlordId)
       const docSnap = await getDoc(docRef)
 
       if(docSnap.exists()) {
@@ -46,12 +48,21 @@ function Contact() {
               <textarea 
                 name="message" 
                 id="message" 
-                className='textare' 
+                className='textarea' 
                 value={message} 
                 onChange={onChange}
-              >
-              </textarea>
+              ></textarea>
             </div>
+
+            <a
+              href={`mailto:${landlord.email}?Subject=${searchParams.get(
+                'listingName'
+              )}&body=${message}`}
+            >
+              <button type='button' className='primaryButton'>
+                Send Message
+              </button>
+            </a>
           </form>
         </main>
       )}
